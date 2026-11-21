@@ -32,7 +32,7 @@
       .filter(([, v]) => cfg.MOSTRAR_PENDENTES || !v.includes("⟦"))
       .map(([k, v]) => `<div><dt>${k}</dt><dd>${marcar(v)}</dd></div>`).join("");
     const whats = window.Compartilhar.botoesWhats(id);
-    const insta = cfg.INSTAGRAM ? `<a class="btn btn-claro" href="https://instagram.com/${cfg.INSTAGRAM}" target="_blank" rel="noopener">📷 @${cfg.INSTAGRAM}</a>` : "";
+    const insta = cfg.INSTAGRAM ? `<a class="btn btn-claro" href="https://instagram.com/${cfg.INSTAGRAM}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" aria-hidden="true"></i> @${cfg.INSTAGRAM}</a>` : "";
     return `
       <div class="final">
         <div class="final-ilustra"><img src="${BASE}assets/ilustra/nos-adota.webp" alt="Ilustração: Arthur e Zé perguntando 'me adota?'"></div>
@@ -43,13 +43,14 @@
         <div class="acoes">
           <h3 class="titulo-mao">Quer me adotar? Chama no WhatsApp:</h3>${whats}${insta}
           <h3 class="titulo-mao">Não pode adotar? Ajuda assim:</h3>
-          <button class="btn btn-compartilhar" id="btn-card">📣 Compartilhar o ${cao.nome}</button>
+          <button class="btn btn-compartilhar" id="btn-card"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i> Compartilhar o ${cao.nome}</button>
           <p class="nota">Imagem pronta com foto e informações para WhatsApp, Instagram, Facebook e TikTok.</p>
         </div>
         <a class="outro-cao" href="${BASE}${outroId}/index.html">
           <img src="${abs(outro.capa)}" alt="">
           <span><small>Conheça também</small><strong class="titulo-mao">${outro.nome}, ${outro.descricao} →</strong></span>
         </a>
+        <a class="btn btn-claro voltar-home" href="${BASE}index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Voltar para o início</a>
       </div>`;
   }
 

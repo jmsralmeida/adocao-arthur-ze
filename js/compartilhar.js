@@ -12,7 +12,7 @@ window.Compartilhar = (function () {
   }
   function botoesWhats(id) {
     return cfg.WHATSAPP.map((w) =>
-      `<a class="btn btn-whats btn-pessoa" href="${linkWhats(w, id)}" target="_blank" rel="noopener">💬 Falar com ${w.nome}<small>${w.rotulo}</small></a>`).join("");
+      `<a class="btn btn-whats btn-pessoa" href="${linkWhats(w, id)}" target="_blank" rel="noopener"><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Falar com ${w.nome}</span><small>${w.rotulo}</small></a>`).join("");
   }
 
   function texto(id) {
@@ -155,17 +155,17 @@ window.Compartilhar = (function () {
           <img id="card-img" alt="Card de adoção">
           <p class="rede-titulo">Compartilhar em</p>
           <div class="redes">
-            <a class="rede rede-whats" id="r-whats" target="_blank" rel="noopener"><span>💬</span>WhatsApp</a>
-            <button class="rede rede-insta" id="r-insta"><span>📸</span>Instagram</button>
-            <a class="rede rede-face" id="r-face" target="_blank" rel="noopener"><span>👍</span>Facebook</a>
-            <button class="rede rede-tiktok" id="r-tiktok"><span>🎵</span>TikTok</button>
+            <a class="rede rede-whats" id="r-whats" target="_blank" rel="noopener"><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>WhatsApp</a>
+            <button class="rede rede-insta" id="r-insta"><span><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>Instagram</button>
+            <a class="rede rede-face" id="r-face" target="_blank" rel="noopener"><span><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></span>Facebook</a>
+            <button class="rede rede-tiktok" id="r-tiktok"><span><i class="fa-brands fa-tiktok" aria-hidden="true"></i></span>TikTok</button>
           </div>
           <p class="nota-rede" id="nota-rede"></p>
           <textarea id="card-txt" aria-label="Texto para compartilhar"></textarea>
           <div class="acoes">
-            <button class="btn btn-compartilhar" id="m-share">📤 Mais opções</button>
-            <a class="btn btn-claro" id="m-baixar">⬇️ Baixar imagem</a>
-            <button class="btn btn-claro" id="m-copiar">📋 Copiar texto</button>
+            <button class="btn btn-compartilhar" id="m-share"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i> Mais opções</button>
+            <a class="btn btn-claro" id="m-baixar"><i class="fa-solid fa-download" aria-hidden="true"></i> Baixar imagem</a>
+            <button class="btn btn-claro" id="m-copiar"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar texto</button>
             <button class="btn btn-claro" id="m-fechar">Fechar</button>
           </div>
         </div>`;

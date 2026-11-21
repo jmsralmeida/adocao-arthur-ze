@@ -221,3 +221,8 @@ body.historia { overflow: hidden; height: 100dvh; overscroll-behavior: none; }
 .saber li { display: flex; gap: 12px; align-items: flex-start; background: var(--papel); border-radius: 16px; padding: 12px 14px; box-shadow: var(--sombra); font-size: 15px; }
 .saber li span { font-size: 26px; line-height: 1; }
 .saber li strong { display: block; font-size: 16px; }
+
+.voltar-home { max-width: 460px; margin: 10px auto 8px; }
+.ajuda-ico { font-size: 24px; color: var(--coracao); }
+.rede span i { font-size: 22px; }
+.btn i { font-size: 1.1em; }
