@@ -2,6 +2,10 @@ window.Compartilhar = (function () {
   const cfg = window.CONFIG;
   const limpo = (t) => t.replace(/⟦[^⟧]*⟧/g, "").replace(/\s+/g, " ").trim();
   const urlDo = (id) => `${cfg.SITE_URL.replace(/\/$/, "")}/${id || ""}`;
+  // Links nos textos compartilhados levam utm_* pra o Analytics saber de onde veio a visita.
+  // O card (imagem) continua com o endereço limpo.
+  const urlCompart = (id, origem = "compartilhado") => `${urlDo(id)}${id ? "/" : ""}?utm_source=${origem}&utm_medium=compartilhar`;
+  const comOrigem = (t, origem) => t.replace(/utm_source=compartilhado/g, `utm_source=${origem}`);
   const contato = () => cfg.WHATSAPP.map((w) => `${w.nome} ${w.rotulo}`).join(" ou ");
   function linkWhats(w, id) {
     const c = id && window.CAES[id];
@@ -19,7 +23,7 @@ window.Compartilhar = (function () {
     const c = window.CAES[id];
     return `Conhece o ${c.nome}? 🐾\n${c.gancho}\n\n` +
       `📍 ${cfg.CIDADE}\n` +
-      `📖 A história dele: ${urlDo(id)}\n` +
+      `📖 A história dele: ${urlCompart(id)}\n` +
       `💬 Quer adotar? WhatsApp ${contato()}\n\n` +
       `Não pode adotar? Compartilhar já ajuda muito 💛`;
   }
@@ -195,8 +199,8 @@ window.Compartilhar = (function () {
     modal.querySelectorAll(".formato").forEach((b) => (b.onclick = () => preparar(b.dataset.formato)));
 
     const atualizarLinks = () => {
-      modal.querySelector("#r-whats").href = `https://wa.me/?text=${encodeURIComponent(txtEl.value)}`;
-      modal.querySelector("#r-face").href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlDo(id))}`;
+      modal.querySelector("#r-whats").href = `https://wa.me/?text=${encodeURIComponent(comOrigem(txtEl.value, "whatsapp"))}`;
+      modal.querySelector("#r-face").href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlCompart(id, "facebook"))}`;
     };
     atualizarLinks(); txtEl.oninput = atualizarLinks;
     modal.querySelector("#r-face").addEventListener("click", () => copiar(txtEl.value).then(() => toast("Texto copiado: cole na legenda do Facebook")));
@@ -267,12 +271,12 @@ window.Compartilhar = (function () {
     return new Promise((ok) => cv.toBlob(ok, "image/jpeg", 0.9));
   }
 
-  const textoSite = () => `Conhece o Arthur e o Zé? 🐾\nDois cachorros resgatados procurando uma família em ${cfg.CIDADE}.\n\n📖 Veja a história deles: ${urlDo("")}\n\nNão pode adotar? Compartilhar já ajuda muito 💛`;
+  const textoSite = () => `Conhece o Arthur e o Zé? 🐾\nDois cachorros resgatados procurando uma família em ${cfg.CIDADE}.\n\n📖 Veja a história deles: ${urlCompart("")}\n\nNão pode adotar? Compartilhar já ajuda muito 💛`;
 
   async function compartilharSiteEm(rede, nota) {
     const t = textoSite();
-    if (rede === "whats") return window.open(`https://wa.me/?text=${encodeURIComponent(t)}`, "_blank");
-    if (rede === "face") { await copiar(t); toast("Texto copiado: cole na legenda"); return window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlDo(""))}`, "_blank"); }
+    if (rede === "whats") return window.open(`https://wa.me/?text=${encodeURIComponent(comOrigem(t, "whatsapp"))}`, "_blank");
+    if (rede === "face") { await copiar(t); toast("Texto copiado: cole na legenda"); return window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlCompart("", "facebook"))}`, "_blank"); }
     const nomeApp = rede === "insta" ? "Instagram" : "TikTok";
     const blob = await gerarCardSite();
     const arquivo = new File([blob], "arthur-e-ze-stories.jpg", { type: "image/jpeg" });

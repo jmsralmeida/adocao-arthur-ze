@@ -87,6 +87,7 @@
     $("#anterior").disabled = atual === 0;
     $("#proximo").disabled = atual === total - 1;
     if (atual > 0) $("#dica").style.visibility = "hidden";
+    document.dispatchEvent(new CustomEvent("historia:passo", { detail: { passo: atual + 1, total } }));
     if (historico) history.replaceState(null, "", atual ? `#${atual + 1}` : location.pathname);
   }
   $("#ver-ficha").onclick = () => ir(total - 1);
