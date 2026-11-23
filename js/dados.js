@@ -14,7 +14,7 @@ window.CONFIG = {
   ],
   INSTAGRAM: "", // ex.: "adoteartherze" (sem @). Vazio = botão some.
   // Google Analytics 4: cole aqui o ID de medição (ex.: "G-AB12CD34EF"). Vazio = sem analytics.
-  GA_ID: "",
+  GA_ID: "G-48GWH148WF",
   MOSTRAR_PENDENTES: true, // false esconde as linhas da ficha ainda não preenchidas
 };
 
