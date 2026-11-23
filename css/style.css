@@ -226,3 +226,12 @@ body.historia { overflow: hidden; height: 100dvh; overscroll-behavior: none; }
 .ajuda-ico { font-size: 24px; color: var(--coracao); }
 .rede span i { font-size: 22px; }
 .btn i { font-size: 1.1em; }
+
+/* aviso de cookies (só aparece com CONFIG.GA_ID preenchido) */
+.aviso-cookies { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 70; max-width: 520px; margin: 0 auto; background: var(--papel); color: var(--tinta); border-radius: 16px; box-shadow: 0 8px 30px rgba(30,20,12,.25); padding: 12px 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font: 14px/1.4 "Nunito", sans-serif; }
+.aviso-cookies p { margin: 0; flex: 1 1 220px; }
+.aviso-cookies div { display: flex; gap: 8px; }
+.aviso-cookies button { border: 0; border-radius: 999px; padding: 8px 14px; font: 800 14px "Nunito", sans-serif; cursor: pointer; }
+.aviso-cookies .sim { background: var(--tinta); color: #fff; }
+.aviso-cookies .nao { background: transparent; color: var(--tinta-suave); text-decoration: underline; }
+.historia .aviso-cookies { bottom: calc(84px + env(safe-area-inset-bottom)); } /* acima das setas da história */

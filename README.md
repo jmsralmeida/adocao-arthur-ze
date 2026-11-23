@@ -19,6 +19,27 @@ No final de cada história, o botão gera um card (imagem 1080x1350) com foto, c
 mais um texto pronto. No celular abre o menu de compartilhar do sistema (Web Share API, com a imagem);
 no computador oferece baixar a imagem e copiar o texto.
 
+## Métricas (Google Analytics 4)
+Cole o ID de medição em `js/dados.js` → `CONFIG.GA_ID` (ex.: `"G-AB12CD34EF"`). Vazio = sem analytics e sem aviso de cookies.
+O código fica em `js/analytics.js` (gtag.js direto, sem Tag Manager) e envia:
+
+| Evento | Quando | Parâmetros |
+|---|---|---|
+| `passo_historia` | cada passo da história visto (1x por visita) | `cao`, `passo`, `total` |
+| `historia_concluida` | chegou na ficha final | `cao` |
+| `abrir_compartilhar` | abriu o card de compartilhar | `cao` |
+| `share` | compartilhou | `cao`, `method` (whatsapp, instagram, facebook, tiktok, nativo, copiar, baixar) |
+| `contato_whatsapp` | clicou pra falar com alguém | `cao`, `pessoa` |
+| `escolher_historia` / `indicar` | cliques na home | `cao` |
+
+Os links nos textos compartilhados levam `?utm_source=whatsapp|facebook|compartilhado&utm_medium=compartilhar`,
+então as visitas que vieram de compartilhamento aparecem em Aquisição de tráfego.
+Para separar quem veio da plaquinha, use no QR: `/arthur/?utm_source=plaquinha&utm_medium=qr`.
+
+No GA4: crie as dimensões personalizadas (escopo evento) `cao`, `passo`, `pessoa` e `method`, marque
+`contato_whatsapp` como evento principal e, em Fluxo de dados → Medição otimizada, desligue
+"Mudanças de página com base no histórico" (a história troca o `#passo` na URL e inflaria as visualizações).
+
 ## Publicação (GitHub Pages)
 Todo commit na `main` publica o site automaticamente pelo workflow `.github/workflows/pages.yml`.
 Endereço: https://jmsralmeida.github.io/adocao-arthur-ze/

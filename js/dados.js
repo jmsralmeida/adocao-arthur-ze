@@ -13,6 +13,8 @@ window.CONFIG = {
     { nome: "Leniza", numero: "5511942765411", rotulo: "(11) 94276-5411" },
   ],
   INSTAGRAM: "", // ex.: "adoteartherze" (sem @). Vazio = botão some.
+  // Google Analytics 4: cole aqui o ID de medição (ex.: "G-AB12CD34EF"). Vazio = sem analytics.
+  GA_ID: "",
   MOSTRAR_PENDENTES: true, // false esconde as linhas da ficha ainda não preenchidas
 };
 
